@@ -1,0 +1,4589 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Medalhas Olímpicas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #0f172a;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-primary: #38bdf8;
+            --gold: #fbbf24;
+            --silver: #94a3b8;
+            --bronze: #b45309;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            padding: 2rem;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-weight: 800;
+            font-size: 3rem;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .table-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .table-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 24px;
+            background: var(--accent-primary);
+            border-radius: 2px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .table-wrapper::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: var(--glass-border);
+            border-radius: 3px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            padding: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--text-dim);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            background: #162035; /* Solid color for sticky header */
+            z-index: 10;
+        }
+
+        td {
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            font-size: 0.95rem;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .country-name {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .gold { color: var(--gold); font-weight: 600; }
+        .silver { color: var(--silver); font-weight: 600; }
+        .bronze { color: var(--bronze); font-weight: 600; }
+        .total-cell { font-weight: 800; color: var(--accent-primary); }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Quadro de Medalhas Olímpicas</h1>
+        <p class="subtitle">Análise Consolidada de todos os tempos (Top 50 por Categoria)</p>
+    </header>
+
+    <div class="dashboard-container">
+        
+        <section class="table-card" id="verao">
+            <h2>Jogos de Verão</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>País</th>
+                            <th>Ouro</th>
+                            <th>Prata</th>
+                            <th>Bronze</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>1</td>
+                    <td class="country-name">Estados Unidos</td>
+                    <td class="gold">1101</td>
+                    <td class="silver">880</td>
+                    <td class="bronze">780</td>
+                    <td class="total-cell">2761</td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td class="country-name">União Soviética</td>
+                    <td class="gold">395</td>
+                    <td class="silver">319</td>
+                    <td class="bronze">296</td>
+                    <td class="total-cell">1010</td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td class="country-name">Grã-Bretanha</td>
+                    <td class="gold">299</td>
+                    <td class="silver">338</td>
+                    <td class="bronze">344</td>
+                    <td class="total-cell">981</td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td class="country-name">França</td>
+                    <td class="gold">242</td>
+                    <td class="silver">284</td>
+                    <td class="bronze">302</td>
+                    <td class="total-cell">828</td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td class="country-name">China</td>
+                    <td class="gold">302</td>
+                    <td class="silver">226</td>
+                    <td class="bronze">197</td>
+                    <td class="total-cell">725</td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td class="country-name">Itália</td>
+                    <td class="gold">229</td>
+                    <td class="silver">201</td>
+                    <td class="bronze">228</td>
+                    <td class="total-cell">658</td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td class="country-name">Alemanha</td>
+                    <td class="gold">201</td>
+                    <td class="silver">205</td>
+                    <td class="bronze">246</td>
+                    <td class="total-cell">652</td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td class="country-name">Austrália</td>
+                    <td class="gold">182</td>
+                    <td class="silver">192</td>
+                    <td class="bronze">226</td>
+                    <td class="total-cell">600</td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td class="country-name">Japão</td>
+                    <td class="gold">189</td>
+                    <td class="silver">162</td>
+                    <td class="bronze">191</td>
+                    <td class="total-cell">542</td>
+                </tr>
+            
+                <tr>
+                    <td>10</td>
+                    <td class="country-name">Hungria</td>
+                    <td class="gold">187</td>
+                    <td class="silver">161</td>
+                    <td class="bronze">182</td>
+                    <td class="total-cell">530</td>
+                </tr>
+            
+                <tr>
+                    <td>11</td>
+                    <td class="country-name">Suécia</td>
+                    <td class="gold">152</td>
+                    <td class="silver">180</td>
+                    <td class="bronze">182</td>
+                    <td class="total-cell">514</td>
+                </tr>
+            
+                <tr>
+                    <td>12</td>
+                    <td class="country-name">Rússia</td>
+                    <td class="gold">149</td>
+                    <td class="silver">125</td>
+                    <td class="bronze">152</td>
+                    <td class="total-cell">426</td>
+                </tr>
+            
+                <tr>
+                    <td>13</td>
+                    <td class="country-name">Alemanha Oriental</td>
+                    <td class="gold">153</td>
+                    <td class="silver">129</td>
+                    <td class="bronze">127</td>
+                    <td class="total-cell">409</td>
+                </tr>
+            
+                <tr>
+                    <td>14</td>
+                    <td class="country-name">Países Baixos</td>
+                    <td class="gold">110</td>
+                    <td class="silver">111</td>
+                    <td class="bronze">134</td>
+                    <td class="total-cell">355</td>
+                </tr>
+            
+                <tr>
+                    <td>15</td>
+                    <td class="country-name">Canadá</td>
+                    <td class="gold">80</td>
+                    <td class="silver">115</td>
+                    <td class="bronze">158</td>
+                    <td class="total-cell">353</td>
+                </tr>
+            
+                <tr>
+                    <td>16</td>
+                    <td class="country-name">Coreia do Sul</td>
+                    <td class="gold">109</td>
+                    <td class="silver">100</td>
+                    <td class="bronze">110</td>
+                    <td class="total-cell">319</td>
+                </tr>
+            
+                <tr>
+                    <td>17</td>
+                    <td class="country-name">Romênia</td>
+                    <td class="gold">93</td>
+                    <td class="silver">101</td>
+                    <td class="bronze">123</td>
+                    <td class="total-cell">317</td>
+                </tr>
+            
+                <tr>
+                    <td>18</td>
+                    <td class="country-name">Polônia</td>
+                    <td class="gold">73</td>
+                    <td class="silver">93</td>
+                    <td class="bronze">142</td>
+                    <td class="total-cell">308</td>
+                </tr>
+            
+                <tr>
+                    <td>19</td>
+                    <td class="country-name">Finlândia</td>
+                    <td class="gold">101</td>
+                    <td class="silver">85</td>
+                    <td class="bronze">119</td>
+                    <td class="total-cell">305</td>
+                </tr>
+            
+                <tr>
+                    <td>20</td>
+                    <td class="country-name">Cuba</td>
+                    <td class="gold">87</td>
+                    <td class="silver">72</td>
+                    <td class="bronze">91</td>
+                    <td class="total-cell">250</td>
+                </tr>
+            
+                <tr>
+                    <td>21</td>
+                    <td class="country-name">Bulgária</td>
+                    <td class="gold">57</td>
+                    <td class="silver">89</td>
+                    <td class="bronze">85</td>
+                    <td class="total-cell">231</td>
+                </tr>
+            
+                <tr>
+                    <td>22</td>
+                    <td class="country-name">Dinamarca</td>
+                    <td class="gold">50</td>
+                    <td class="silver">80</td>
+                    <td class="bronze">84</td>
+                    <td class="total-cell">214</td>
+                </tr>
+            
+                <tr>
+                    <td>23</td>
+                    <td class="country-name">Suíça</td>
+                    <td class="gold">54</td>
+                    <td class="silver">81</td>
+                    <td class="bronze">78</td>
+                    <td class="total-cell">213</td>
+                </tr>
+            
+                <tr>
+                    <td>24</td>
+                    <td class="country-name">Alemanha Ocidental</td>
+                    <td class="gold">56</td>
+                    <td class="silver">67</td>
+                    <td class="bronze">81</td>
+                    <td class="total-cell">204</td>
+                </tr>
+            
+                <tr>
+                    <td>25</td>
+                    <td class="country-name">Espanha</td>
+                    <td class="gold">53</td>
+                    <td class="silver">76</td>
+                    <td class="bronze">56</td>
+                    <td class="total-cell">185</td>
+                </tr>
+            
+                <tr>
+                    <td>26</td>
+                    <td class="country-name">Brasil</td>
+                    <td class="gold">40</td>
+                    <td class="silver">49</td>
+                    <td class="bronze">81</td>
+                    <td class="total-cell">170</td>
+                </tr>
+            
+                <tr>
+                    <td>27</td>
+                    <td class="country-name">Noruega</td>
+                    <td class="gold">64</td>
+                    <td class="silver">52</td>
+                    <td class="bronze">52</td>
+                    <td class="total-cell">168</td>
+                </tr>
+            
+                <tr>
+                    <td>28</td>
+                    <td class="country-name">Bélgica</td>
+                    <td class="gold">46</td>
+                    <td class="silver">55</td>
+                    <td class="bronze">64</td>
+                    <td class="total-cell">165</td>
+                </tr>
+            
+                <tr>
+                    <td>29</td>
+                    <td class="country-name">Nova Zelândia</td>
+                    <td class="gold">63</td>
+                    <td class="silver">40</td>
+                    <td class="bronze">54</td>
+                    <td class="total-cell">157</td>
+                </tr>
+            
+                <tr>
+                    <td>30</td>
+                    <td class="country-name">Ucrânia</td>
+                    <td class="gold">38</td>
+                    <td class="silver">41</td>
+                    <td class="bronze">72</td>
+                    <td class="total-cell">151</td>
+                </tr>
+            
+                <tr>
+                    <td>31</td>
+                    <td class="country-name">Checoslováquia</td>
+                    <td class="gold">49</td>
+                    <td class="silver">49</td>
+                    <td class="bronze">45</td>
+                    <td class="total-cell">143</td>
+                </tr>
+            
+                <tr>
+                    <td>32</td>
+                    <td class="country-name">Grécia</td>
+                    <td class="gold">36</td>
+                    <td class="silver">46</td>
+                    <td class="bronze">47</td>
+                    <td class="total-cell">129</td>
+                </tr>
+            
+                <tr>
+                    <td>33</td>
+                    <td class="country-name">Quênia</td>
+                    <td class="gold">39</td>
+                    <td class="silver">44</td>
+                    <td class="bronze">41</td>
+                    <td class="total-cell">124</td>
+                </tr>
+            
+                <tr>
+                    <td>34</td>
+                    <td class="country-name">Equipe Alemã Unida</td>
+                    <td class="gold">28</td>
+                    <td class="silver">54</td>
+                    <td class="bronze">36</td>
+                    <td class="total-cell">118</td>
+                </tr>
+            
+                <tr>
+                    <td>35</td>
+                    <td class="country-name">Turquia</td>
+                    <td class="gold">41</td>
+                    <td class="silver">29</td>
+                    <td class="bronze">42</td>
+                    <td class="total-cell">112</td>
+                </tr>
+            
+                <tr>
+                    <td>36</td>
+                    <td class="country-name">Equipa Unificada</td>
+                    <td class="gold">45</td>
+                    <td class="silver">38</td>
+                    <td class="bronze">29</td>
+                    <td class="total-cell">112</td>
+                </tr>
+            
+                <tr>
+                    <td>37</td>
+                    <td class="country-name">Áustria</td>
+                    <td class="gold">21</td>
+                    <td class="silver">34</td>
+                    <td class="bronze">44</td>
+                    <td class="total-cell">99</td>
+                </tr>
+            
+                <tr>
+                    <td>38</td>
+                    <td class="country-name">África do Sul</td>
+                    <td class="gold">28</td>
+                    <td class="silver">36</td>
+                    <td class="bronze">31</td>
+                    <td class="total-cell">95</td>
+                </tr>
+            
+                <tr>
+                    <td>39</td>
+                    <td class="country-name">Jamaica</td>
+                    <td class="gold">27</td>
+                    <td class="silver">39</td>
+                    <td class="bronze">27</td>
+                    <td class="total-cell">93</td>
+                </tr>
+            
+                <tr>
+                    <td>40</td>
+                    <td class="country-name">Iugoslávia</td>
+                    <td class="gold">28</td>
+                    <td class="silver">31</td>
+                    <td class="bronze">31</td>
+                    <td class="total-cell">90</td>
+                </tr>
+            
+                <tr>
+                    <td>41</td>
+                    <td class="country-name">Irã</td>
+                    <td class="gold">27</td>
+                    <td class="silver">29</td>
+                    <td class="bronze">32</td>
+                    <td class="total-cell">88</td>
+                </tr>
+            
+                <tr>
+                    <td>42</td>
+                    <td class="country-name">Bielorrússia</td>
+                    <td class="gold">13</td>
+                    <td class="silver">30</td>
+                    <td class="bronze">42</td>
+                    <td class="total-cell">85</td>
+                </tr>
+            
+                <tr>
+                    <td>43</td>
+                    <td class="country-name">Argentina</td>
+                    <td class="gold">22</td>
+                    <td class="silver">27</td>
+                    <td class="bronze">31</td>
+                    <td class="total-cell">80</td>
+                </tr>
+            
+                <tr>
+                    <td>44</td>
+                    <td class="country-name">Cazaquistão</td>
+                    <td class="gold">16</td>
+                    <td class="silver">24</td>
+                    <td class="bronze">39</td>
+                    <td class="total-cell">79</td>
+                </tr>
+            
+                <tr>
+                    <td>45</td>
+                    <td class="country-name">México</td>
+                    <td class="gold">13</td>
+                    <td class="silver">27</td>
+                    <td class="bronze">38</td>
+                    <td class="total-cell">78</td>
+                </tr>
+            
+                <tr>
+                    <td>46</td>
+                    <td class="country-name">Chéquia</td>
+                    <td class="gold">22</td>
+                    <td class="silver">21</td>
+                    <td class="bronze">29</td>
+                    <td class="total-cell">72</td>
+                </tr>
+            
+                <tr>
+                    <td>47</td>
+                    <td class="country-name">ROC</td>
+                    <td class="gold">20</td>
+                    <td class="silver">28</td>
+                    <td class="bronze">23</td>
+                    <td class="total-cell">71</td>
+                </tr>
+            
+                <tr>
+                    <td>48</td>
+                    <td class="country-name">Etiópia</td>
+                    <td class="gold">24</td>
+                    <td class="silver">15</td>
+                    <td class="bronze">23</td>
+                    <td class="total-cell">62</td>
+                </tr>
+            
+                <tr>
+                    <td>49</td>
+                    <td class="country-name">Coreia do Norte</td>
+                    <td class="gold">16</td>
+                    <td class="silver">18</td>
+                    <td class="bronze">26</td>
+                    <td class="total-cell">60</td>
+                </tr>
+            
+                <tr>
+                    <td>50</td>
+                    <td class="country-name">Azerbaijão</td>
+                    <td class="gold">9</td>
+                    <td class="silver">16</td>
+                    <td class="bronze">31</td>
+                    <td class="total-cell">56</td>
+                </tr>
+            
+                <tr>
+                    <td>51</td>
+                    <td class="country-name">Uzbequistão</td>
+                    <td class="gold">18</td>
+                    <td class="silver">8</td>
+                    <td class="bronze">23</td>
+                    <td class="total-cell">49</td>
+                </tr>
+            
+                <tr>
+                    <td>52</td>
+                    <td class="country-name">Croácia</td>
+                    <td class="gold">16</td>
+                    <td class="silver">15</td>
+                    <td class="bronze">17</td>
+                    <td class="total-cell">48</td>
+                </tr>
+            
+                <tr>
+                    <td>53</td>
+                    <td class="country-name">Geórgia</td>
+                    <td class="gold">13</td>
+                    <td class="silver">15</td>
+                    <td class="bronze">19</td>
+                    <td class="total-cell">47</td>
+                </tr>
+            
+                <tr>
+                    <td>54</td>
+                    <td class="country-name">Taipé Chinês</td>
+                    <td class="gold">9</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">23</td>
+                    <td class="total-cell">43</td>
+                </tr>
+            
+                <tr>
+                    <td>55</td>
+                    <td class="country-name">Irlanda</td>
+                    <td class="gold">15</td>
+                    <td class="silver">10</td>
+                    <td class="bronze">17</td>
+                    <td class="total-cell">42</td>
+                </tr>
+            
+                <tr>
+                    <td>56</td>
+                    <td class="country-name">Egito</td>
+                    <td class="gold">9</td>
+                    <td class="silver">12</td>
+                    <td class="bronze">20</td>
+                    <td class="total-cell">41</td>
+                </tr>
+            
+                <tr>
+                    <td>57</td>
+                    <td class="country-name">Índia</td>
+                    <td class="gold">10</td>
+                    <td class="silver">10</td>
+                    <td class="bronze">21</td>
+                    <td class="total-cell">41</td>
+                </tr>
+            
+                <tr>
+                    <td>58</td>
+                    <td class="country-name">Tailândia</td>
+                    <td class="gold">11</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">19</td>
+                    <td class="total-cell">41</td>
+                </tr>
+            
+                <tr>
+                    <td>59</td>
+                    <td class="country-name">Indonésia</td>
+                    <td class="gold">10</td>
+                    <td class="silver">14</td>
+                    <td class="bronze">16</td>
+                    <td class="total-cell">40</td>
+                </tr>
+            
+                <tr>
+                    <td>60</td>
+                    <td class="country-name">Colômbia</td>
+                    <td class="gold">5</td>
+                    <td class="silver">16</td>
+                    <td class="bronze">17</td>
+                    <td class="total-cell">38</td>
+                </tr>
+            
+                <tr>
+                    <td>61</td>
+                    <td class="country-name">Estônia</td>
+                    <td class="gold">10</td>
+                    <td class="silver">9</td>
+                    <td class="bronze">17</td>
+                    <td class="total-cell">36</td>
+                </tr>
+            
+                <tr>
+                    <td>62</td>
+                    <td class="country-name">Eslováquia</td>
+                    <td class="gold">10</td>
+                    <td class="silver">14</td>
+                    <td class="bronze">9</td>
+                    <td class="total-cell">33</td>
+                </tr>
+            
+                <tr>
+                    <td>63</td>
+                    <td class="country-name">Portugal</td>
+                    <td class="gold">6</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">15</td>
+                    <td class="total-cell">32</td>
+                </tr>
+            
+                <tr>
+                    <td>64</td>
+                    <td class="country-name">Eslovênia</td>
+                    <td class="gold">10</td>
+                    <td class="silver">10</td>
+                    <td class="bronze">11</td>
+                    <td class="total-cell">31</td>
+                </tr>
+            
+                <tr>
+                    <td>65</td>
+                    <td class="country-name">Mongólia</td>
+                    <td class="gold">2</td>
+                    <td class="silver">12</td>
+                    <td class="bronze">17</td>
+                    <td class="total-cell">31</td>
+                </tr>
+            
+                <tr>
+                    <td>66</td>
+                    <td class="country-name">Lituânia</td>
+                    <td class="gold">6</td>
+                    <td class="silver">9</td>
+                    <td class="bronze">15</td>
+                    <td class="total-cell">30</td>
+                </tr>
+            
+                <tr>
+                    <td>67</td>
+                    <td class="country-name">Sérvia</td>
+                    <td class="gold">9</td>
+                    <td class="silver">8</td>
+                    <td class="bronze">12</td>
+                    <td class="total-cell">29</td>
+                </tr>
+            
+                <tr>
+                    <td>68</td>
+                    <td class="country-name">Nigéria</td>
+                    <td class="gold">3</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">13</td>
+                    <td class="total-cell">27</td>
+                </tr>
+            
+                <tr>
+                    <td>69</td>
+                    <td class="country-name">Marrocos</td>
+                    <td class="gold">8</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">13</td>
+                    <td class="total-cell">26</td>
+                </tr>
+            
+                <tr>
+                    <td>70</td>
+                    <td class="country-name">Armênia</td>
+                    <td class="gold">2</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">9</td>
+                    <td class="total-cell">22</td>
+                </tr>
+            
+                <tr>
+                    <td>71</td>
+                    <td class="country-name">Letônia</td>
+                    <td class="gold">4</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">6</td>
+                    <td class="total-cell">21</td>
+                </tr>
+            
+                <tr>
+                    <td>72</td>
+                    <td class="country-name">Argélia</td>
+                    <td class="gold">7</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">9</td>
+                    <td class="total-cell">20</td>
+                </tr>
+            
+                <tr>
+                    <td>73</td>
+                    <td class="country-name">Israel</td>
+                    <td class="gold">4</td>
+                    <td class="silver">6</td>
+                    <td class="bronze">10</td>
+                    <td class="total-cell">20</td>
+                </tr>
+            
+                <tr>
+                    <td>74</td>
+                    <td class="country-name">Trinidad e Tobago</td>
+                    <td class="gold">3</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">11</td>
+                    <td class="total-cell">19</td>
+                </tr>
+            
+                <tr>
+                    <td>75</td>
+                    <td class="country-name">Venezuela</td>
+                    <td class="gold">3</td>
+                    <td class="silver">7</td>
+                    <td class="bronze">9</td>
+                    <td class="total-cell">19</td>
+                </tr>
+            
+                <tr>
+                    <td>76</td>
+                    <td class="country-name">Filipinas</td>
+                    <td class="gold">3</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">10</td>
+                    <td class="total-cell">18</td>
+                </tr>
+            
+                <tr>
+                    <td>77</td>
+                    <td class="country-name">Tunísia</td>
+                    <td class="gold">6</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">8</td>
+                    <td class="total-cell">18</td>
+                </tr>
+            
+                <tr>
+                    <td>78</td>
+                    <td class="country-name">Equipa mista</td>
+                    <td class="gold">8</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">17</td>
+                </tr>
+            
+                <tr>
+                    <td>79</td>
+                    <td class="country-name">Bahamas</td>
+                    <td class="gold">8</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">6</td>
+                    <td class="total-cell">16</td>
+                </tr>
+            
+                <tr>
+                    <td>80</td>
+                    <td class="country-name">Chile</td>
+                    <td class="gold">3</td>
+                    <td class="silver">8</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">15</td>
+                </tr>
+            
+                <tr>
+                    <td>81</td>
+                    <td class="country-name">Malásia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">8</td>
+                    <td class="bronze">7</td>
+                    <td class="total-cell">15</td>
+                </tr>
+            
+                <tr>
+                    <td>82</td>
+                    <td class="country-name">República Dominicana</td>
+                    <td class="gold">4</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">6</td>
+                    <td class="total-cell">15</td>
+                </tr>
+            
+                <tr>
+                    <td>83</td>
+                    <td class="country-name">Hong Kong</td>
+                    <td class="gold">4</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">6</td>
+                    <td class="total-cell">13</td>
+                </tr>
+            
+                <tr>
+                    <td>84</td>
+                    <td class="country-name">Quirguistão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">8</td>
+                    <td class="total-cell">13</td>
+                </tr>
+            
+                <tr>
+                    <td>85</td>
+                    <td class="country-name">Uganda</td>
+                    <td class="gold">5</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">13</td>
+                </tr>
+            
+                <tr>
+                    <td>86</td>
+                    <td class="country-name">Australásia</td>
+                    <td class="gold">3</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">5</td>
+                    <td class="total-cell">12</td>
+                </tr>
+            
+                <tr>
+                    <td>87</td>
+                    <td class="country-name">Porto Rico</td>
+                    <td class="gold">2</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">8</td>
+                    <td class="total-cell">12</td>
+                </tr>
+            
+                <tr>
+                    <td>88</td>
+                    <td class="country-name">Paquistão</td>
+                    <td class="gold">4</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">11</td>
+                </tr>
+            
+                <tr>
+                    <td>89</td>
+                    <td class="country-name">Equador</td>
+                    <td class="gold">4</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">10</td>
+                </tr>
+            
+                <tr>
+                    <td>90</td>
+                    <td class="country-name">Moldávia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">7</td>
+                    <td class="total-cell">10</td>
+                </tr>
+            
+                <tr>
+                    <td>91</td>
+                    <td class="country-name">Uruguai</td>
+                    <td class="gold">2</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">6</td>
+                    <td class="total-cell">10</td>
+                </tr>
+            
+                <tr>
+                    <td>92</td>
+                    <td class="country-name">Catar</td>
+                    <td class="gold">2</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">6</td>
+                    <td class="total-cell">9</td>
+                </tr>
+            
+                <tr>
+                    <td>93</td>
+                    <td class="country-name">Barém</td>
+                    <td class="gold">4</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">8</td>
+                </tr>
+            
+                <tr>
+                    <td>94</td>
+                    <td class="country-name">Império Russo</td>
+                    <td class="gold">1</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">8</td>
+                </tr>
+            
+                <tr>
+                    <td>95</td>
+                    <td class="country-name">Zimbabwe</td>
+                    <td class="gold">3</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">8</td>
+                </tr>
+            
+                <tr>
+                    <td>96</td>
+                    <td class="country-name">Tajiquistão</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">5</td>
+                    <td class="total-cell">7</td>
+                </tr>
+            
+                <tr>
+                    <td>97</td>
+                    <td class="country-name">Camarões</td>
+                    <td class="gold">3</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">6</td>
+                </tr>
+            
+                <tr>
+                    <td>98</td>
+                    <td class="country-name">Singapura</td>
+                    <td class="gold">1</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">6</td>
+                </tr>
+            
+                <tr>
+                    <td>99</td>
+                    <td class="country-name">Costa do Marfim</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>100</td>
+                    <td class="country-name">Gana</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>101</td>
+                    <td class="country-name">Granada</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>102</td>
+                    <td class="country-name">Kosovo</td>
+                    <td class="gold">3</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>103</td>
+                    <td class="country-name">Namíbia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>104</td>
+                    <td class="country-name">Peru</td>
+                    <td class="gold">1</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>105</td>
+                    <td class="country-name">Vietnã</td>
+                    <td class="gold">1</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>106</td>
+                    <td class="country-name">Atletas Individuais Neutros</td>
+                    <td class="gold">1</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>107</td>
+                    <td class="country-name">Arábia Saudita</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>108</td>
+                    <td class="country-name">Boêmia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>109</td>
+                    <td class="country-name">Botsuana</td>
+                    <td class="gold">1</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>110</td>
+                    <td class="country-name">Costa Rica</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>111</td>
+                    <td class="country-name">Fiji</td>
+                    <td class="gold">2</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>112</td>
+                    <td class="country-name">Islândia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>113</td>
+                    <td class="country-name">Jordânia</td>
+                    <td class="gold">1</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>114</td>
+                    <td class="country-name">Líbano</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>115</td>
+                    <td class="country-name">Panamá</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>116</td>
+                    <td class="country-name">Síria</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>117</td>
+                    <td class="country-name">Guatemala</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>118</td>
+                    <td class="country-name">Kuwait</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>119</td>
+                    <td class="country-name">San Marino</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>120</td>
+                    <td class="country-name">Zâmbia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>121</td>
+                    <td class="country-name">Participantes Olímpicos Independentes</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>122</td>
+                    <td class="country-name">Afeganistão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>123</td>
+                    <td class="country-name">Albânia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>124</td>
+                    <td class="country-name">Bermudas</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>125</td>
+                    <td class="country-name">Federação das Índias Ocidentais</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>126</td>
+                    <td class="country-name">Burundi</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>127</td>
+                    <td class="country-name">Emirados Árabes Unidos</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>128</td>
+                    <td class="country-name">Haiti</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>129</td>
+                    <td class="country-name">Luxemburgo</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>130</td>
+                    <td class="country-name">Macedônia do Norte</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>131</td>
+                    <td class="country-name">Moçambique</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>132</td>
+                    <td class="country-name">Níger</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>133</td>
+                    <td class="country-name">Santa Lúcia</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>134</td>
+                    <td class="country-name">Sérvia e Montenegro</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>135</td>
+                    <td class="country-name">Sri Lanka</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>136</td>
+                    <td class="country-name">Suriname</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>137</td>
+                    <td class="country-name">Tanzânia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>138</td>
+                    <td class="country-name">Atletas Olímpicos Independentes</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>139</td>
+                    <td class="country-name">Antilhas Neerlandesas</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>140</td>
+                    <td class="country-name">Barbados</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>141</td>
+                    <td class="country-name">Burquina Fasso</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>142</td>
+                    <td class="country-name">Chipre</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>143</td>
+                    <td class="country-name">Djibuti</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>144</td>
+                    <td class="country-name">Dominica</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>145</td>
+                    <td class="country-name">Equipe Olímpica de Refugiados</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>146</td>
+                    <td class="country-name">Eritreia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>147</td>
+                    <td class="country-name">Gabão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>148</td>
+                    <td class="country-name">Guiana</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>149</td>
+                    <td class="country-name">Ilhas Virgens Americanas</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>150</td>
+                    <td class="country-name">Iraque</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>151</td>
+                    <td class="country-name">Maurício</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>152</td>
+                    <td class="country-name">Montenegro</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>153</td>
+                    <td class="country-name">Paraguai</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>154</td>
+                    <td class="country-name">Samoa</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>155</td>
+                    <td class="country-name">Senegal</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>156</td>
+                    <td class="country-name">Sudão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>157</td>
+                    <td class="country-name">Togo</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>158</td>
+                    <td class="country-name">Tonga</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>159</td>
+                    <td class="country-name">Turcomenistão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>160</td>
+                    <td class="country-name">Liechtenstein</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>161</td>
+                    <td class="country-name">Atletas Olímpicos da Rússia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="table-card" id="inverno">
+            <h2>Jogos de Inverno</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>País</th>
+                            <th>Ouro</th>
+                            <th>Prata</th>
+                            <th>Bronze</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>1</td>
+                    <td class="country-name">Noruega</td>
+                    <td class="gold">132</td>
+                    <td class="silver">125</td>
+                    <td class="bronze">111</td>
+                    <td class="total-cell">368</td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td class="country-name">Estados Unidos</td>
+                    <td class="gold">105</td>
+                    <td class="silver">112</td>
+                    <td class="bronze">88</td>
+                    <td class="total-cell">305</td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td class="country-name">Alemanha</td>
+                    <td class="gold">92</td>
+                    <td class="silver">88</td>
+                    <td class="bronze">60</td>
+                    <td class="total-cell">240</td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td class="country-name">Áustria</td>
+                    <td class="gold">64</td>
+                    <td class="silver">81</td>
+                    <td class="bronze">87</td>
+                    <td class="total-cell">232</td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td class="country-name">Canadá</td>
+                    <td class="gold">73</td>
+                    <td class="silver">64</td>
+                    <td class="bronze">62</td>
+                    <td class="total-cell">199</td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td class="country-name">União Soviética</td>
+                    <td class="gold">78</td>
+                    <td class="silver">57</td>
+                    <td class="bronze">59</td>
+                    <td class="total-cell">194</td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td class="country-name">Finlândia</td>
+                    <td class="gold">43</td>
+                    <td class="silver">63</td>
+                    <td class="bronze">61</td>
+                    <td class="total-cell">167</td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td class="country-name">Suécia</td>
+                    <td class="gold">57</td>
+                    <td class="silver">46</td>
+                    <td class="bronze">55</td>
+                    <td class="total-cell">158</td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td class="country-name">Suíça</td>
+                    <td class="gold">56</td>
+                    <td class="silver">45</td>
+                    <td class="bronze">52</td>
+                    <td class="total-cell">153</td>
+                </tr>
+            
+                <tr>
+                    <td>10</td>
+                    <td class="country-name">Países Baixos</td>
+                    <td class="gold">45</td>
+                    <td class="silver">44</td>
+                    <td class="bronze">41</td>
+                    <td class="total-cell">130</td>
+                </tr>
+            
+                <tr>
+                    <td>11</td>
+                    <td class="country-name">França</td>
+                    <td class="gold">36</td>
+                    <td class="silver">35</td>
+                    <td class="bronze">53</td>
+                    <td class="total-cell">124</td>
+                </tr>
+            
+                <tr>
+                    <td>12</td>
+                    <td class="country-name">Itália</td>
+                    <td class="gold">40</td>
+                    <td class="silver">36</td>
+                    <td class="bronze">48</td>
+                    <td class="total-cell">124</td>
+                </tr>
+            
+                <tr>
+                    <td>13</td>
+                    <td class="country-name">Rússia</td>
+                    <td class="gold">47</td>
+                    <td class="silver">39</td>
+                    <td class="bronze">35</td>
+                    <td class="total-cell">121</td>
+                </tr>
+            
+                <tr>
+                    <td>14</td>
+                    <td class="country-name">Alemanha Oriental</td>
+                    <td class="gold">39</td>
+                    <td class="silver">36</td>
+                    <td class="bronze">35</td>
+                    <td class="total-cell">110</td>
+                </tr>
+            
+                <tr>
+                    <td>15</td>
+                    <td class="country-name">Coreia do Sul</td>
+                    <td class="gold">31</td>
+                    <td class="silver">25</td>
+                    <td class="bronze">14</td>
+                    <td class="total-cell">70</td>
+                </tr>
+            
+                <tr>
+                    <td>16</td>
+                    <td class="country-name">China</td>
+                    <td class="gold">13</td>
+                    <td class="silver">28</td>
+                    <td class="bronze">21</td>
+                    <td class="total-cell">62</td>
+                </tr>
+            
+                <tr>
+                    <td>17</td>
+                    <td class="country-name">Japão</td>
+                    <td class="gold">14</td>
+                    <td class="silver">22</td>
+                    <td class="bronze">22</td>
+                    <td class="total-cell">58</td>
+                </tr>
+            
+                <tr>
+                    <td>18</td>
+                    <td class="country-name">Alemanha Ocidental</td>
+                    <td class="gold">11</td>
+                    <td class="silver">15</td>
+                    <td class="bronze">13</td>
+                    <td class="total-cell">39</td>
+                </tr>
+            
+                <tr>
+                    <td>19</td>
+                    <td class="country-name">Grã-Bretanha</td>
+                    <td class="gold">11</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">17</td>
+                    <td class="total-cell">32</td>
+                </tr>
+            
+                <tr>
+                    <td>20</td>
+                    <td class="country-name">ROC</td>
+                    <td class="gold">5</td>
+                    <td class="silver">12</td>
+                    <td class="bronze">15</td>
+                    <td class="total-cell">32</td>
+                </tr>
+            
+                <tr>
+                    <td>21</td>
+                    <td class="country-name">Chéquia</td>
+                    <td class="gold">9</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">11</td>
+                    <td class="total-cell">31</td>
+                </tr>
+            
+                <tr>
+                    <td>22</td>
+                    <td class="country-name">Checoslováquia</td>
+                    <td class="gold">2</td>
+                    <td class="silver">8</td>
+                    <td class="bronze">15</td>
+                    <td class="total-cell">25</td>
+                </tr>
+            
+                <tr>
+                    <td>23</td>
+                    <td class="country-name">Equipa Unificada</td>
+                    <td class="gold">9</td>
+                    <td class="silver">6</td>
+                    <td class="bronze">8</td>
+                    <td class="total-cell">23</td>
+                </tr>
+            
+                <tr>
+                    <td>24</td>
+                    <td class="country-name">Polônia</td>
+                    <td class="gold">7</td>
+                    <td class="silver">7</td>
+                    <td class="bronze">8</td>
+                    <td class="total-cell">22</td>
+                </tr>
+            
+                <tr>
+                    <td>25</td>
+                    <td class="country-name">Equipe Alemã Unida</td>
+                    <td class="gold">8</td>
+                    <td class="silver">6</td>
+                    <td class="bronze">5</td>
+                    <td class="total-cell">19</td>
+                </tr>
+            
+                <tr>
+                    <td>26</td>
+                    <td class="country-name">Bielorrússia</td>
+                    <td class="gold">8</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">5</td>
+                    <td class="total-cell">18</td>
+                </tr>
+            
+                <tr>
+                    <td>27</td>
+                    <td class="country-name">Eslovênia</td>
+                    <td class="gold">2</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">10</td>
+                    <td class="total-cell">17</td>
+                </tr>
+            
+                <tr>
+                    <td>28</td>
+                    <td class="country-name">Atletas Olímpicos da Rússia</td>
+                    <td class="gold">2</td>
+                    <td class="silver">6</td>
+                    <td class="bronze">9</td>
+                    <td class="total-cell">17</td>
+                </tr>
+            
+                <tr>
+                    <td>29</td>
+                    <td class="country-name">Austrália</td>
+                    <td class="gold">5</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">5</td>
+                    <td class="total-cell">15</td>
+                </tr>
+            
+                <tr>
+                    <td>30</td>
+                    <td class="country-name">Croácia</td>
+                    <td class="gold">4</td>
+                    <td class="silver">6</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">11</td>
+                </tr>
+            
+                <tr>
+                    <td>31</td>
+                    <td class="country-name">Liechtenstein</td>
+                    <td class="gold">2</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">6</td>
+                    <td class="total-cell">10</td>
+                </tr>
+            
+                <tr>
+                    <td>32</td>
+                    <td class="country-name">Letônia</td>
+                    <td class="gold">1</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">5</td>
+                    <td class="total-cell">9</td>
+                </tr>
+            
+                <tr>
+                    <td>33</td>
+                    <td class="country-name">Cazaquistão</td>
+                    <td class="gold">1</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">8</td>
+                </tr>
+            
+                <tr>
+                    <td>34</td>
+                    <td class="country-name">Eslováquia</td>
+                    <td class="gold">3</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">8</td>
+                </tr>
+            
+                <tr>
+                    <td>35</td>
+                    <td class="country-name">Ucrânia</td>
+                    <td class="gold">3</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">8</td>
+                </tr>
+            
+                <tr>
+                    <td>36</td>
+                    <td class="country-name">Estônia</td>
+                    <td class="gold">4</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">7</td>
+                </tr>
+            
+                <tr>
+                    <td>37</td>
+                    <td class="country-name">Hungria</td>
+                    <td class="gold">1</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">7</td>
+                </tr>
+            
+                <tr>
+                    <td>38</td>
+                    <td class="country-name">Bulgária</td>
+                    <td class="gold">1</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">6</td>
+                </tr>
+            
+                <tr>
+                    <td>39</td>
+                    <td class="country-name">Bélgica</td>
+                    <td class="gold">1</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>40</td>
+                    <td class="country-name">Espanha</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>41</td>
+                    <td class="country-name">Iugoslávia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>42</td>
+                    <td class="country-name">Nova Zelândia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>43</td>
+                    <td class="country-name">Coreia do Norte</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>44</td>
+                    <td class="country-name">Luxemburgo</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>45</td>
+                    <td class="country-name">Brasil</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>46</td>
+                    <td class="country-name">Dinamarca</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>47</td>
+                    <td class="country-name">Romênia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>48</td>
+                    <td class="country-name">Uzbequistão</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>49</td>
+                    <td class="country-name">Afeganistão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>50</td>
+                    <td class="country-name">Albânia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>51</td>
+                    <td class="country-name">África do Sul</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>52</td>
+                    <td class="country-name">Antilhas Neerlandesas</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>53</td>
+                    <td class="country-name">Arábia Saudita</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>54</td>
+                    <td class="country-name">Argélia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>55</td>
+                    <td class="country-name">Argentina</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>56</td>
+                    <td class="country-name">Armênia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>57</td>
+                    <td class="country-name">Australásia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>58</td>
+                    <td class="country-name">Azerbaijão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>59</td>
+                    <td class="country-name">Bahamas</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>60</td>
+                    <td class="country-name">Barém</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>61</td>
+                    <td class="country-name">Barbados</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>62</td>
+                    <td class="country-name">Bermudas</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>63</td>
+                    <td class="country-name">Boêmia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>64</td>
+                    <td class="country-name">Botsuana</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>65</td>
+                    <td class="country-name">Federação das Índias Ocidentais</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>66</td>
+                    <td class="country-name">Burquina Fasso</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>67</td>
+                    <td class="country-name">Burundi</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>68</td>
+                    <td class="country-name">Camarões</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>69</td>
+                    <td class="country-name">Catar</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>70</td>
+                    <td class="country-name">Chile</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>71</td>
+                    <td class="country-name">Chipre</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>72</td>
+                    <td class="country-name">Colômbia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>73</td>
+                    <td class="country-name">Costa Rica</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>74</td>
+                    <td class="country-name">Costa do Marfim</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>75</td>
+                    <td class="country-name">Cuba</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>76</td>
+                    <td class="country-name">Djibuti</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>77</td>
+                    <td class="country-name">Dominica</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>78</td>
+                    <td class="country-name">Egito</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>79</td>
+                    <td class="country-name">Emirados Árabes Unidos</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>80</td>
+                    <td class="country-name">Equipe Olímpica de Refugiados</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>81</td>
+                    <td class="country-name">Equador</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>82</td>
+                    <td class="country-name">Eritreia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>83</td>
+                    <td class="country-name">Etiópia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>84</td>
+                    <td class="country-name">Fiji</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>85</td>
+                    <td class="country-name">Filipinas</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>86</td>
+                    <td class="country-name">Gabão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>87</td>
+                    <td class="country-name">Gana</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>88</td>
+                    <td class="country-name">Geórgia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>89</td>
+                    <td class="country-name">Granada</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>90</td>
+                    <td class="country-name">Grécia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>91</td>
+                    <td class="country-name">Guatemala</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>92</td>
+                    <td class="country-name">Guiana</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>93</td>
+                    <td class="country-name">Haiti</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>94</td>
+                    <td class="country-name">Hong Kong</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>95</td>
+                    <td class="country-name">Ilhas Virgens Americanas</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>96</td>
+                    <td class="country-name">Índia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>97</td>
+                    <td class="country-name">Indonésia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>98</td>
+                    <td class="country-name">Irã</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>99</td>
+                    <td class="country-name">Iraque</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>100</td>
+                    <td class="country-name">Irlanda</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>101</td>
+                    <td class="country-name">Islândia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>102</td>
+                    <td class="country-name">Israel</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>103</td>
+                    <td class="country-name">Jamaica</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>104</td>
+                    <td class="country-name">Jordânia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>105</td>
+                    <td class="country-name">Kosovo</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>106</td>
+                    <td class="country-name">Kuwait</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>107</td>
+                    <td class="country-name">Líbano</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>108</td>
+                    <td class="country-name">Lituânia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>109</td>
+                    <td class="country-name">Macedônia do Norte</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>110</td>
+                    <td class="country-name">Malásia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>111</td>
+                    <td class="country-name">Marrocos</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>112</td>
+                    <td class="country-name">Maurício</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>113</td>
+                    <td class="country-name">México</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>114</td>
+                    <td class="country-name">Moçambique</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>115</td>
+                    <td class="country-name">Moldávia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>116</td>
+                    <td class="country-name">Mongólia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>117</td>
+                    <td class="country-name">Montenegro</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>118</td>
+                    <td class="country-name">Namíbia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>119</td>
+                    <td class="country-name">Níger</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>120</td>
+                    <td class="country-name">Nigéria</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>121</td>
+                    <td class="country-name">Paquistão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>122</td>
+                    <td class="country-name">Panamá</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>123</td>
+                    <td class="country-name">Paraguai</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>124</td>
+                    <td class="country-name">Peru</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>125</td>
+                    <td class="country-name">Porto Rico</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>126</td>
+                    <td class="country-name">Portugal</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>127</td>
+                    <td class="country-name">Quênia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>128</td>
+                    <td class="country-name">Quirguistão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>129</td>
+                    <td class="country-name">República Dominicana</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>130</td>
+                    <td class="country-name">Império Russo</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>131</td>
+                    <td class="country-name">Samoa</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>132</td>
+                    <td class="country-name">San Marino</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>133</td>
+                    <td class="country-name">Santa Lúcia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>134</td>
+                    <td class="country-name">Senegal</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>135</td>
+                    <td class="country-name">Sérvia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>136</td>
+                    <td class="country-name">Sérvia e Montenegro</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>137</td>
+                    <td class="country-name">Singapura</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>138</td>
+                    <td class="country-name">Síria</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>139</td>
+                    <td class="country-name">Sri Lanka</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>140</td>
+                    <td class="country-name">Sudão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>141</td>
+                    <td class="country-name">Suriname</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>142</td>
+                    <td class="country-name">Tailândia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>143</td>
+                    <td class="country-name">Tajiquistão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>144</td>
+                    <td class="country-name">Tanzânia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>145</td>
+                    <td class="country-name">Taipé Chinês</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>146</td>
+                    <td class="country-name">Togo</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>147</td>
+                    <td class="country-name">Tonga</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>148</td>
+                    <td class="country-name">Trinidad e Tobago</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>149</td>
+                    <td class="country-name">Tunísia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>150</td>
+                    <td class="country-name">Turcomenistão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>151</td>
+                    <td class="country-name">Turquia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>152</td>
+                    <td class="country-name">Uganda</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>153</td>
+                    <td class="country-name">Uruguai</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>154</td>
+                    <td class="country-name">Venezuela</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>155</td>
+                    <td class="country-name">Vietnã</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>156</td>
+                    <td class="country-name">Zâmbia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>157</td>
+                    <td class="country-name">Zimbabwe</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>158</td>
+                    <td class="country-name">Atletas Individuais Neutros</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>159</td>
+                    <td class="country-name">Atletas Olímpicos Independentes</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>160</td>
+                    <td class="country-name">Participantes Olímpicos Independentes</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                <tr>
+                    <td>161</td>
+                    <td class="country-name">Equipa mista</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">0</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="table-card" id="geral">
+            <h2>Total Geral</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>País</th>
+                            <th>Ouro</th>
+                            <th>Prata</th>
+                            <th>Bronze</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>1</td>
+                    <td class="country-name">Estados Unidos</td>
+                    <td class="gold">1166</td>
+                    <td class="silver">948</td>
+                    <td class="bronze">827</td>
+                    <td class="total-cell">2941</td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td class="country-name">União Soviética</td>
+                    <td class="gold">473</td>
+                    <td class="silver">376</td>
+                    <td class="bronze">355</td>
+                    <td class="total-cell">1204</td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td class="country-name">Grã-Bretanha</td>
+                    <td class="gold">296</td>
+                    <td class="silver">320</td>
+                    <td class="bronze">332</td>
+                    <td class="total-cell">948</td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td class="country-name">Alemanha</td>
+                    <td class="gold">293</td>
+                    <td class="silver">293</td>
+                    <td class="bronze">306</td>
+                    <td class="total-cell">892</td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td class="country-name">França</td>
+                    <td class="gold">262</td>
+                    <td class="silver">293</td>
+                    <td class="bronze">333</td>
+                    <td class="total-cell">888</td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td class="country-name">Itália</td>
+                    <td class="gold">257</td>
+                    <td class="silver">224</td>
+                    <td class="bronze">261</td>
+                    <td class="total-cell">742</td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td class="country-name">China</td>
+                    <td class="gold">275</td>
+                    <td class="silver">227</td>
+                    <td class="bronze">194</td>
+                    <td class="total-cell">696</td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td class="country-name">Suécia</td>
+                    <td class="gold">205</td>
+                    <td class="silver">222</td>
+                    <td class="bronze">234</td>
+                    <td class="total-cell">661</td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td class="country-name">Austrália</td>
+                    <td class="gold">169</td>
+                    <td class="silver">178</td>
+                    <td class="bronze">215</td>
+                    <td class="total-cell">562</td>
+                </tr>
+            
+                <tr>
+                    <td>10</td>
+                    <td class="country-name">Japão</td>
+                    <td class="gold">183</td>
+                    <td class="silver">172</td>
+                    <td class="bronze">200</td>
+                    <td class="total-cell">555</td>
+                </tr>
+            
+                <tr>
+                    <td>11</td>
+                    <td class="country-name">Rússia</td>
+                    <td class="gold">196</td>
+                    <td class="silver">164</td>
+                    <td class="bronze">187</td>
+                    <td class="total-cell">547</td>
+                </tr>
+            
+                <tr>
+                    <td>12</td>
+                    <td class="country-name">Noruega</td>
+                    <td class="gold">192</td>
+                    <td class="silver">176</td>
+                    <td class="bronze">160</td>
+                    <td class="total-cell">528</td>
+                </tr>
+            
+                <tr>
+                    <td>13</td>
+                    <td class="country-name">Canadá</td>
+                    <td class="gold">144</td>
+                    <td class="silver">172</td>
+                    <td class="bronze">209</td>
+                    <td class="total-cell">525</td>
+                </tr>
+            
+                <tr>
+                    <td>14</td>
+                    <td class="country-name">Alemanha Oriental</td>
+                    <td class="gold">192</td>
+                    <td class="silver">165</td>
+                    <td class="bronze">162</td>
+                    <td class="total-cell">519</td>
+                </tr>
+            
+                <tr>
+                    <td>15</td>
+                    <td class="country-name">Hungria</td>
+                    <td class="gold">182</td>
+                    <td class="silver">156</td>
+                    <td class="bronze">180</td>
+                    <td class="total-cell">518</td>
+                </tr>
+            
+                <tr>
+                    <td>16</td>
+                    <td class="country-name">Finlândia</td>
+                    <td class="gold">144</td>
+                    <td class="silver">148</td>
+                    <td class="bronze">180</td>
+                    <td class="total-cell">472</td>
+                </tr>
+            
+                <tr>
+                    <td>17</td>
+                    <td class="country-name">Países Baixos</td>
+                    <td class="gold">140</td>
+                    <td class="silver">148</td>
+                    <td class="bronze">163</td>
+                    <td class="total-cell">451</td>
+                </tr>
+            
+                <tr>
+                    <td>18</td>
+                    <td class="country-name">Suíça</td>
+                    <td class="gold">109</td>
+                    <td class="silver">124</td>
+                    <td class="bronze">125</td>
+                    <td class="total-cell">358</td>
+                </tr>
+            
+                <tr>
+                    <td>19</td>
+                    <td class="country-name">Coreia do Sul</td>
+                    <td class="gold">127</td>
+                    <td class="silver">116</td>
+                    <td class="bronze">114</td>
+                    <td class="total-cell">357</td>
+                </tr>
+            
+                <tr>
+                    <td>20</td>
+                    <td class="country-name">Áustria</td>
+                    <td class="gold">83</td>
+                    <td class="silver">115</td>
+                    <td class="bronze">128</td>
+                    <td class="total-cell">326</td>
+                </tr>
+            
+                <tr>
+                    <td>21</td>
+                    <td class="country-name">Polônia</td>
+                    <td class="gold">79</td>
+                    <td class="silver">96</td>
+                    <td class="bronze">145</td>
+                    <td class="total-cell">320</td>
+                </tr>
+            
+                <tr>
+                    <td>22</td>
+                    <td class="country-name">Romênia</td>
+                    <td class="gold">90</td>
+                    <td class="silver">97</td>
+                    <td class="bronze">122</td>
+                    <td class="total-cell">309</td>
+                </tr>
+            
+                <tr>
+                    <td>23</td>
+                    <td class="country-name">Alemanha Ocidental</td>
+                    <td class="gold">67</td>
+                    <td class="silver">82</td>
+                    <td class="bronze">94</td>
+                    <td class="total-cell">243</td>
+                </tr>
+            
+                <tr>
+                    <td>24</td>
+                    <td class="country-name">Cuba</td>
+                    <td class="gold">85</td>
+                    <td class="silver">71</td>
+                    <td class="bronze">85</td>
+                    <td class="total-cell">241</td>
+                </tr>
+            
+                <tr>
+                    <td>25</td>
+                    <td class="country-name">Bulgária</td>
+                    <td class="gold">55</td>
+                    <td class="silver">90</td>
+                    <td class="bronze">85</td>
+                    <td class="total-cell">230</td>
+                </tr>
+            
+                <tr>
+                    <td>26</td>
+                    <td class="country-name">Dinamarca</td>
+                    <td class="gold">48</td>
+                    <td class="silver">79</td>
+                    <td class="bronze">79</td>
+                    <td class="total-cell">206</td>
+                </tr>
+            
+                <tr>
+                    <td>27</td>
+                    <td class="country-name">Brasil</td>
+                    <td class="gold">41</td>
+                    <td class="silver">49</td>
+                    <td class="bronze">81</td>
+                    <td class="total-cell">171</td>
+                </tr>
+            
+                <tr>
+                    <td>28</td>
+                    <td class="country-name">Espanha</td>
+                    <td class="gold">49</td>
+                    <td class="silver">72</td>
+                    <td class="bronze">50</td>
+                    <td class="total-cell">171</td>
+                </tr>
+            
+                <tr>
+                    <td>29</td>
+                    <td class="country-name">Checoslováquia</td>
+                    <td class="gold">51</td>
+                    <td class="silver">57</td>
+                    <td class="bronze">60</td>
+                    <td class="total-cell">168</td>
+                </tr>
+            
+                <tr>
+                    <td>30</td>
+                    <td class="country-name">Bélgica</td>
+                    <td class="gold">44</td>
+                    <td class="silver">56</td>
+                    <td class="bronze">61</td>
+                    <td class="total-cell">161</td>
+                </tr>
+            
+                <tr>
+                    <td>31</td>
+                    <td class="country-name">Ucrânia</td>
+                    <td class="gold">38</td>
+                    <td class="silver">37</td>
+                    <td class="bronze">72</td>
+                    <td class="total-cell">147</td>
+                </tr>
+            
+                <tr>
+                    <td>32</td>
+                    <td class="country-name">Nova Zelândia</td>
+                    <td class="gold">53</td>
+                    <td class="silver">34</td>
+                    <td class="bronze">53</td>
+                    <td class="total-cell">140</td>
+                </tr>
+            
+                <tr>
+                    <td>33</td>
+                    <td class="country-name">Equipe Alemã Unida</td>
+                    <td class="gold">36</td>
+                    <td class="silver">60</td>
+                    <td class="bronze">41</td>
+                    <td class="total-cell">137</td>
+                </tr>
+            
+                <tr>
+                    <td>34</td>
+                    <td class="country-name">Equipa Unificada</td>
+                    <td class="gold">54</td>
+                    <td class="silver">44</td>
+                    <td class="bronze">37</td>
+                    <td class="total-cell">135</td>
+                </tr>
+            
+                <tr>
+                    <td>35</td>
+                    <td class="country-name">Grécia</td>
+                    <td class="gold">35</td>
+                    <td class="silver">45</td>
+                    <td class="bronze">41</td>
+                    <td class="total-cell">121</td>
+                </tr>
+            
+                <tr>
+                    <td>36</td>
+                    <td class="country-name">Quênia</td>
+                    <td class="gold">35</td>
+                    <td class="silver">42</td>
+                    <td class="bronze">36</td>
+                    <td class="total-cell">113</td>
+                </tr>
+            
+                <tr>
+                    <td>37</td>
+                    <td class="country-name">Turquia</td>
+                    <td class="gold">41</td>
+                    <td class="silver">26</td>
+                    <td class="bronze">37</td>
+                    <td class="total-cell">104</td>
+                </tr>
+            
+                <tr>
+                    <td>38</td>
+                    <td class="country-name">Bielorrússia</td>
+                    <td class="gold">21</td>
+                    <td class="silver">35</td>
+                    <td class="bronze">47</td>
+                    <td class="total-cell">103</td>
+                </tr>
+            
+                <tr>
+                    <td>39</td>
+                    <td class="country-name">ROC</td>
+                    <td class="gold">25</td>
+                    <td class="silver">40</td>
+                    <td class="bronze">38</td>
+                    <td class="total-cell">103</td>
+                </tr>
+            
+                <tr>
+                    <td>40</td>
+                    <td class="country-name">Chéquia</td>
+                    <td class="gold">28</td>
+                    <td class="silver">32</td>
+                    <td class="bronze">38</td>
+                    <td class="total-cell">98</td>
+                </tr>
+            
+                <tr>
+                    <td>41</td>
+                    <td class="country-name">Iugoslávia</td>
+                    <td class="gold">28</td>
+                    <td class="silver">34</td>
+                    <td class="bronze">32</td>
+                    <td class="total-cell">94</td>
+                </tr>
+            
+                <tr>
+                    <td>42</td>
+                    <td class="country-name">África do Sul</td>
+                    <td class="gold">27</td>
+                    <td class="silver">33</td>
+                    <td class="bronze">29</td>
+                    <td class="total-cell">89</td>
+                </tr>
+            
+                <tr>
+                    <td>43</td>
+                    <td class="country-name">Jamaica</td>
+                    <td class="gold">26</td>
+                    <td class="silver">36</td>
+                    <td class="bronze">25</td>
+                    <td class="total-cell">87</td>
+                </tr>
+            
+                <tr>
+                    <td>44</td>
+                    <td class="country-name">Cazaquistão</td>
+                    <td class="gold">16</td>
+                    <td class="silver">24</td>
+                    <td class="bronze">40</td>
+                    <td class="total-cell">80</td>
+                </tr>
+            
+                <tr>
+                    <td>45</td>
+                    <td class="country-name">Argentina</td>
+                    <td class="gold">21</td>
+                    <td class="silver">26</td>
+                    <td class="bronze">30</td>
+                    <td class="total-cell">77</td>
+                </tr>
+            
+                <tr>
+                    <td>46</td>
+                    <td class="country-name">Irã</td>
+                    <td class="gold">24</td>
+                    <td class="silver">23</td>
+                    <td class="bronze">29</td>
+                    <td class="total-cell">76</td>
+                </tr>
+            
+                <tr>
+                    <td>47</td>
+                    <td class="country-name">México</td>
+                    <td class="gold">13</td>
+                    <td class="silver">24</td>
+                    <td class="bronze">36</td>
+                    <td class="total-cell">73</td>
+                </tr>
+            
+                <tr>
+                    <td>48</td>
+                    <td class="country-name">Etiópia</td>
+                    <td class="gold">23</td>
+                    <td class="silver">12</td>
+                    <td class="bronze">23</td>
+                    <td class="total-cell">58</td>
+                </tr>
+            
+                <tr>
+                    <td>49</td>
+                    <td class="country-name">Coreia do Norte</td>
+                    <td class="gold">16</td>
+                    <td class="silver">17</td>
+                    <td class="bronze">23</td>
+                    <td class="total-cell">56</td>
+                </tr>
+            
+                <tr>
+                    <td>50</td>
+                    <td class="country-name">Croácia</td>
+                    <td class="gold">18</td>
+                    <td class="silver">19</td>
+                    <td class="bronze">15</td>
+                    <td class="total-cell">52</td>
+                </tr>
+            
+                <tr>
+                    <td>51</td>
+                    <td class="country-name">Azerbaijão</td>
+                    <td class="gold">7</td>
+                    <td class="silver">14</td>
+                    <td class="bronze">28</td>
+                    <td class="total-cell">49</td>
+                </tr>
+            
+                <tr>
+                    <td>52</td>
+                    <td class="country-name">Eslovênia</td>
+                    <td class="gold">10</td>
+                    <td class="silver">14</td>
+                    <td class="bronze">21</td>
+                    <td class="total-cell">45</td>
+                </tr>
+            
+                <tr>
+                    <td>53</td>
+                    <td class="country-name">Estônia</td>
+                    <td class="gold">14</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">18</td>
+                    <td class="total-cell">43</td>
+                </tr>
+            
+                <tr>
+                    <td>54</td>
+                    <td class="country-name">Eslováquia</td>
+                    <td class="gold">13</td>
+                    <td class="silver">18</td>
+                    <td class="bronze">9</td>
+                    <td class="total-cell">40</td>
+                </tr>
+            
+                <tr>
+                    <td>55</td>
+                    <td class="country-name">Geórgia</td>
+                    <td class="gold">10</td>
+                    <td class="silver">12</td>
+                    <td class="bronze">18</td>
+                    <td class="total-cell">40</td>
+                </tr>
+            
+                <tr>
+                    <td>56</td>
+                    <td class="country-name">Egito</td>
+                    <td class="gold">8</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">19</td>
+                    <td class="total-cell">38</td>
+                </tr>
+            
+                <tr>
+                    <td>57</td>
+                    <td class="country-name">Indonésia</td>
+                    <td class="gold">8</td>
+                    <td class="silver">14</td>
+                    <td class="bronze">15</td>
+                    <td class="total-cell">37</td>
+                </tr>
+            
+                <tr>
+                    <td>58</td>
+                    <td class="country-name">Uzbequistão</td>
+                    <td class="gold">11</td>
+                    <td class="silver">6</td>
+                    <td class="bronze">20</td>
+                    <td class="total-cell">37</td>
+                </tr>
+            
+                <tr>
+                    <td>59</td>
+                    <td class="country-name">Taipé Chinês</td>
+                    <td class="gold">7</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">18</td>
+                    <td class="total-cell">36</td>
+                </tr>
+            
+                <tr>
+                    <td>60</td>
+                    <td class="country-name">Índia</td>
+                    <td class="gold">10</td>
+                    <td class="silver">9</td>
+                    <td class="bronze">16</td>
+                    <td class="total-cell">35</td>
+                </tr>
+            
+                <tr>
+                    <td>61</td>
+                    <td class="country-name">Irlanda</td>
+                    <td class="gold">11</td>
+                    <td class="silver">10</td>
+                    <td class="bronze">14</td>
+                    <td class="total-cell">35</td>
+                </tr>
+            
+                <tr>
+                    <td>62</td>
+                    <td class="country-name">Tailândia</td>
+                    <td class="gold">10</td>
+                    <td class="silver">8</td>
+                    <td class="bronze">17</td>
+                    <td class="total-cell">35</td>
+                </tr>
+            
+                <tr>
+                    <td>63</td>
+                    <td class="country-name">Colômbia</td>
+                    <td class="gold">5</td>
+                    <td class="silver">13</td>
+                    <td class="bronze">16</td>
+                    <td class="total-cell">34</td>
+                </tr>
+            
+                <tr>
+                    <td>64</td>
+                    <td class="country-name">Letônia</td>
+                    <td class="gold">5</td>
+                    <td class="silver">14</td>
+                    <td class="bronze">11</td>
+                    <td class="total-cell">30</td>
+                </tr>
+            
+                <tr>
+                    <td>65</td>
+                    <td class="country-name">Mongólia</td>
+                    <td class="gold">2</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">17</td>
+                    <td class="total-cell">30</td>
+                </tr>
+            
+                <tr>
+                    <td>66</td>
+                    <td class="country-name">Portugal</td>
+                    <td class="gold">5</td>
+                    <td class="silver">9</td>
+                    <td class="bronze">14</td>
+                    <td class="total-cell">28</td>
+                </tr>
+            
+                <tr>
+                    <td>67</td>
+                    <td class="country-name">Nigéria</td>
+                    <td class="gold">3</td>
+                    <td class="silver">11</td>
+                    <td class="bronze">13</td>
+                    <td class="total-cell">27</td>
+                </tr>
+            
+                <tr>
+                    <td>68</td>
+                    <td class="country-name">Lituânia</td>
+                    <td class="gold">6</td>
+                    <td class="silver">7</td>
+                    <td class="bronze">13</td>
+                    <td class="total-cell">26</td>
+                </tr>
+            
+                <tr>
+                    <td>69</td>
+                    <td class="country-name">Marrocos</td>
+                    <td class="gold">7</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">12</td>
+                    <td class="total-cell">24</td>
+                </tr>
+            
+                <tr>
+                    <td>70</td>
+                    <td class="country-name">Sérvia</td>
+                    <td class="gold">6</td>
+                    <td class="silver">7</td>
+                    <td class="bronze">11</td>
+                    <td class="total-cell">24</td>
+                </tr>
+            
+                <tr>
+                    <td>71</td>
+                    <td class="country-name">Trinidad e Tobago</td>
+                    <td class="gold">3</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">11</td>
+                    <td class="total-cell">19</td>
+                </tr>
+            
+                <tr>
+                    <td>72</td>
+                    <td class="country-name">Venezuela</td>
+                    <td class="gold">3</td>
+                    <td class="silver">7</td>
+                    <td class="bronze">9</td>
+                    <td class="total-cell">19</td>
+                </tr>
+            
+                <tr>
+                    <td>73</td>
+                    <td class="country-name">Armênia</td>
+                    <td class="gold">2</td>
+                    <td class="silver">8</td>
+                    <td class="bronze">8</td>
+                    <td class="total-cell">18</td>
+                </tr>
+            
+                <tr>
+                    <td>74</td>
+                    <td class="country-name">Argélia</td>
+                    <td class="gold">5</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">8</td>
+                    <td class="total-cell">17</td>
+                </tr>
+            
+                <tr>
+                    <td>75</td>
+                    <td class="country-name">Atletas Olímpicos da Rússia</td>
+                    <td class="gold">2</td>
+                    <td class="silver">6</td>
+                    <td class="bronze">9</td>
+                    <td class="total-cell">17</td>
+                </tr>
+            
+                <tr>
+                    <td>76</td>
+                    <td class="country-name">Equipa mista</td>
+                    <td class="gold">8</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">17</td>
+                </tr>
+            
+                <tr>
+                    <td>77</td>
+                    <td class="country-name">Bahamas</td>
+                    <td class="gold">8</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">6</td>
+                    <td class="total-cell">16</td>
+                </tr>
+            
+                <tr>
+                    <td>78</td>
+                    <td class="country-name">Tunísia</td>
+                    <td class="gold">5</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">7</td>
+                    <td class="total-cell">15</td>
+                </tr>
+            
+                <tr>
+                    <td>79</td>
+                    <td class="country-name">Filipinas</td>
+                    <td class="gold">1</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">8</td>
+                    <td class="total-cell">14</td>
+                </tr>
+            
+                <tr>
+                    <td>80</td>
+                    <td class="country-name">Chile</td>
+                    <td class="gold">2</td>
+                    <td class="silver">7</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">13</td>
+                </tr>
+            
+                <tr>
+                    <td>81</td>
+                    <td class="country-name">Israel</td>
+                    <td class="gold">3</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">9</td>
+                    <td class="total-cell">13</td>
+                </tr>
+            
+                <tr>
+                    <td>82</td>
+                    <td class="country-name">Malásia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">8</td>
+                    <td class="bronze">5</td>
+                    <td class="total-cell">13</td>
+                </tr>
+            
+                <tr>
+                    <td>83</td>
+                    <td class="country-name">Australásia</td>
+                    <td class="gold">3</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">5</td>
+                    <td class="total-cell">12</td>
+                </tr>
+            
+                <tr>
+                    <td>84</td>
+                    <td class="country-name">República Dominicana</td>
+                    <td class="gold">3</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">12</td>
+                </tr>
+            
+                <tr>
+                    <td>85</td>
+                    <td class="country-name">Uganda</td>
+                    <td class="gold">4</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">11</td>
+                </tr>
+            
+                <tr>
+                    <td>86</td>
+                    <td class="country-name">Liechtenstein</td>
+                    <td class="gold">2</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">6</td>
+                    <td class="total-cell">10</td>
+                </tr>
+            
+                <tr>
+                    <td>87</td>
+                    <td class="country-name">Paquistão</td>
+                    <td class="gold">3</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">10</td>
+                </tr>
+            
+                <tr>
+                    <td>88</td>
+                    <td class="country-name">Porto Rico</td>
+                    <td class="gold">2</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">6</td>
+                    <td class="total-cell">10</td>
+                </tr>
+            
+                <tr>
+                    <td>89</td>
+                    <td class="country-name">Uruguai</td>
+                    <td class="gold">2</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">6</td>
+                    <td class="total-cell">10</td>
+                </tr>
+            
+                <tr>
+                    <td>90</td>
+                    <td class="country-name">Hong Kong</td>
+                    <td class="gold">2</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">9</td>
+                </tr>
+            
+                <tr>
+                    <td>91</td>
+                    <td class="country-name">Catar</td>
+                    <td class="gold">2</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">5</td>
+                    <td class="total-cell">8</td>
+                </tr>
+            
+                <tr>
+                    <td>92</td>
+                    <td class="country-name">Império Russo</td>
+                    <td class="gold">1</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">8</td>
+                </tr>
+            
+                <tr>
+                    <td>93</td>
+                    <td class="country-name">Zimbabwe</td>
+                    <td class="gold">3</td>
+                    <td class="silver">4</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">8</td>
+                </tr>
+            
+                <tr>
+                    <td>94</td>
+                    <td class="country-name">Quirguistão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">7</td>
+                </tr>
+            
+                <tr>
+                    <td>95</td>
+                    <td class="country-name">Camarões</td>
+                    <td class="gold">3</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">6</td>
+                </tr>
+            
+                <tr>
+                    <td>96</td>
+                    <td class="country-name">Moldávia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">6</td>
+                </tr>
+            
+                <tr>
+                    <td>97</td>
+                    <td class="country-name">Equador</td>
+                    <td class="gold">3</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>98</td>
+                    <td class="country-name">Gana</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">4</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>99</td>
+                    <td class="country-name">Namíbia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">5</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>100</td>
+                    <td class="country-name">Singapura</td>
+                    <td class="gold">1</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>101</td>
+                    <td class="country-name">Vietnã</td>
+                    <td class="gold">1</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>102</td>
+                    <td class="country-name">Atletas Individuais Neutros</td>
+                    <td class="gold">1</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">5</td>
+                </tr>
+            
+                <tr>
+                    <td>103</td>
+                    <td class="country-name">Arábia Saudita</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>104</td>
+                    <td class="country-name">Barém</td>
+                    <td class="gold">2</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>105</td>
+                    <td class="country-name">Boêmia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>106</td>
+                    <td class="country-name">Costa Rica</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>107</td>
+                    <td class="country-name">Costa do Marfim</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>108</td>
+                    <td class="country-name">Islândia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>109</td>
+                    <td class="country-name">Líbano</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>110</td>
+                    <td class="country-name">Luxemburgo</td>
+                    <td class="gold">1</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>111</td>
+                    <td class="country-name">Peru</td>
+                    <td class="gold">1</td>
+                    <td class="silver">3</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>112</td>
+                    <td class="country-name">Síria</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>113</td>
+                    <td class="country-name">Tajiquistão</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">4</td>
+                </tr>
+            
+                <tr>
+                    <td>114</td>
+                    <td class="country-name">Fiji</td>
+                    <td class="gold">2</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>115</td>
+                    <td class="country-name">Granada</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>116</td>
+                    <td class="country-name">Jordânia</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>117</td>
+                    <td class="country-name">Kosovo</td>
+                    <td class="gold">3</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>118</td>
+                    <td class="country-name">Kuwait</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">3</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>119</td>
+                    <td class="country-name">Panamá</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>120</td>
+                    <td class="country-name">San Marino</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>121</td>
+                    <td class="country-name">Participantes Olímpicos Independentes</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">3</td>
+                </tr>
+            
+                <tr>
+                    <td>122</td>
+                    <td class="country-name">Afeganistão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>123</td>
+                    <td class="country-name">Albânia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>124</td>
+                    <td class="country-name">Bermudas</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>125</td>
+                    <td class="country-name">Botsuana</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>126</td>
+                    <td class="country-name">Federação das Índias Ocidentais</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">2</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>127</td>
+                    <td class="country-name">Burundi</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>128</td>
+                    <td class="country-name">Emirados Árabes Unidos</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>129</td>
+                    <td class="country-name">Haiti</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>130</td>
+                    <td class="country-name">Macedônia do Norte</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>131</td>
+                    <td class="country-name">Moçambique</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>132</td>
+                    <td class="country-name">Níger</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>133</td>
+                    <td class="country-name">Santa Lúcia</td>
+                    <td class="gold">1</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>134</td>
+                    <td class="country-name">Sérvia e Montenegro</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>135</td>
+                    <td class="country-name">Sri Lanka</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>136</td>
+                    <td class="country-name">Suriname</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>137</td>
+                    <td class="country-name">Tanzânia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">2</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>138</td>
+                    <td class="country-name">Zâmbia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>139</td>
+                    <td class="country-name">Atletas Olímpicos Independentes</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">2</td>
+                </tr>
+            
+                <tr>
+                    <td>140</td>
+                    <td class="country-name">Antilhas Neerlandesas</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>141</td>
+                    <td class="country-name">Barbados</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>142</td>
+                    <td class="country-name">Burquina Fasso</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>143</td>
+                    <td class="country-name">Chipre</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>144</td>
+                    <td class="country-name">Djibuti</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>145</td>
+                    <td class="country-name">Dominica</td>
+                    <td class="gold">1</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>146</td>
+                    <td class="country-name">Equipe Olímpica de Refugiados</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>147</td>
+                    <td class="country-name">Eritreia</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>148</td>
+                    <td class="country-name">Gabão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>149</td>
+                    <td class="country-name">Guatemala</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>150</td>
+                    <td class="country-name">Guiana</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>151</td>
+                    <td class="country-name">Ilhas Virgens Americanas</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>152</td>
+                    <td class="country-name">Iraque</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>153</td>
+                    <td class="country-name">Maurício</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>154</td>
+                    <td class="country-name">Montenegro</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>155</td>
+                    <td class="country-name">Paraguai</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>156</td>
+                    <td class="country-name">Samoa</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>157</td>
+                    <td class="country-name">Senegal</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>158</td>
+                    <td class="country-name">Sudão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>159</td>
+                    <td class="country-name">Togo</td>
+                    <td class="gold">0</td>
+                    <td class="silver">0</td>
+                    <td class="bronze">1</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>160</td>
+                    <td class="country-name">Tonga</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                <tr>
+                    <td>161</td>
+                    <td class="country-name">Turcomenistão</td>
+                    <td class="gold">0</td>
+                    <td class="silver">1</td>
+                    <td class="bronze">0</td>
+                    <td class="total-cell">1</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
+    
