@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[codz]
+*.so
+
+# Ambientes Virtuais
+venv/
+.venv/
+env/
+.env
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# OS 
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+
+# Se for necessário ignorar os arquivos de dados brutos muito grandes, descomente as linhas abaixo:
+# data_from_basedosdados/
+# data_from_kaggle/
+
+# Se for necessário ignorar os resultados gerados, descomente as linhas abaixo:
+# results/

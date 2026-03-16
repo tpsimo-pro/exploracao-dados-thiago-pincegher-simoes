@@ -1,0 +1,160 @@
+﻿Rank,NOC,País,Ouro,Prata,Bronze,Total
+1,USA,United States,1122,891,792,2805
+2,GBR,Great Britain,314,356,349,1019
+3,URS,Soviet Union,395,319,296,1010
+4,FRA,France,262,292,323,877
+5,GER,Germany,255,286,304,845
+6,CHN,China,303,226,198,727
+7,ITA,Italy,241,214,233,688
+8,AUS,Australia,180,189,228,597
+9,HUN,Hungary,190,168,186,544
+10,JPN,Japan,189,162,193,544
+11,SWE,Sweden,155,186,191,532
+12,RUS,Russian Federation,148,130,153,431
+13,GDR,East Germany,153,129,127,409
+14,NED,Netherlands,113,114,139,366
+15,CAN,Canada,80,119,156,355
+16,KOR,Korea,109,100,110,319
+17,ROU,Romania,93,101,123,317
+18,POL,Poland,76,95,145,316
+19,FIN,Finland,106,87,121,314
+20,CUB,Cuba,86,70,88,244
+21,BUL,Bulgaria,57,89,85,231
+22,SUI,Switzerland,61,89,79,229
+23,DEN,Denmark,53,87,89,229
+24,FRG,West Germany,56,67,81,204
+25,ESP,Spain,53,76,58,187
+26,BEL,Belgium,51,59,73,183
+27,NOR,Norway,64,55,53,172
+28,BRA,Brazil,40,49,81,170
+29,GRE,Greece,45,60,60,165
+30,NZL,New Zealand,63,40,54,157
+31,UKR,Ukraine,38,41,72,151
+32,TCH,Czechoslovakia,49,50,47,146
+33,KEN,Kenya,39,44,41,124
+34,AUT,Austria,27,40,49,116
+35,EUN,Unified Team,45,38,29,112
+36,TUR,Türkiye,41,29,41,111
+37,RSA,South Africa,28,37,32,97
+38,JAM,Jamaica,27,39,28,94
+39,IRI,IR Iran,27,29,32,88
+40,BLR,Belarus,13,30,42,85
+41,YUG,Yugoslavia,26,29,28,83
+42,ARG,Argentina,22,27,31,80
+43,KAZ,Kazakhstan,15,24,39,78
+44,MEX,Mexico,13,27,37,77
+45,CZE,Czechia,22,22,28,72
+46,ROC,ROC,20,28,23,71
+47,ETH,Ethiopia,24,15,23,62
+48,PRK,DPR Korea,16,18,27,61
+49,AZE,Azerbaijan,9,16,31,56
+50,UZB,Uzbekistan,18,8,23,49
+51,CRO,Croatia,16,15,17,48
+52,GEO,Georgia,13,15,19,47
+53,IRL,Ireland,15,11,19,45
+54,TPE,Chinese Taipei,9,11,23,43
+55,THA,Thailand,11,11,19,41
+56,IND,India,10,10,21,41
+57,INA,Indonesia,10,14,15,39
+58,EGY,Egypt,9,11,19,39
+59,COL,Colombia,5,16,17,38
+60,EST,Estonia,10,9,17,36
+61,SVK,Slovakia,10,14,9,33
+62,POR,Portugal,6,11,15,32
+63,SLO,Slovenia,10,10,11,31
+64,MGL,Mongolia,2,12,17,31
+65,LTU,Lithuania,6,9,15,30
+66,SRB,Serbia,9,8,12,29
+67,NGR,Nigeria,3,11,13,27
+68,MAR,Morocco,8,5,13,26
+69,ARM,Armenia,2,11,9,22
+70,LAT,Latvia,4,11,6,21
+71,ALG,Algeria,7,4,9,20
+72,ISR,Israel,4,6,10,20
+73,TTO,Trinidad and Tobago,3,5,11,19
+74,VEN,Venezuela,3,7,9,19
+75,TUN,Tunisia,6,4,8,18
+76,PHI,Philippines,3,5,10,18
+77,BAH,The Bahamas,8,2,6,16
+78,DOM,Dominican Republic,4,5,6,15
+79,CHI,Chile,3,8,4,15
+80,MAS,Malaysia,0,8,7,15
+81,UGA,Uganda,5,5,3,13
+82,HKG,"Hong Kong, China",4,3,6,13
+83,KGZ,Kyrgyzstan,0,5,8,13
+84,ANZ,Australasia,3,4,5,12
+85,PUR,Puerto Rico,2,2,8,12
+86,PAK,Pakistan,4,3,4,11
+87,ECU,Ecuador,4,4,2,10
+88,URU,Uruguay,2,2,6,10
+89,MDA,Republic of Moldova,0,3,7,10
+90,MIX,Mixed team,3,2,4,9
+91,QAT,Qatar,2,2,5,9
+92,SCG,Serbia and Montenegro,2,4,3,9
+93,BRN,Bahrain,4,3,1,8
+94,ZIM,Zimbabwe,3,4,1,8
+95,TJK,Tajikistan,1,1,5,7
+96,CMR,Cameroon,3,1,2,6
+97,SGP,Singapore,1,2,3,6
+98,BOH,Bohemia,0,1,5,6
+99,KOS,Kosovo,3,1,1,5
+100,LUX,Luxembourg,3,2,0,5
+101,AIN,AIN,1,3,1,5
+102,CIV,Côte d'Ivoire,1,1,3,5
+103,GRN,Grenada,1,1,3,5
+104,IOA,Independent Olympic Athletes,1,1,3,5
+105,PER,Peru,1,3,1,5
+106,VIE,Vietnam,1,3,1,5
+107,GHA,Ghana,0,1,4,5
+108,NAM,Namibia,0,5,0,5
+109,FIJ,Fiji,2,1,1,4
+110,BOT,Botswana,1,2,1,4
+111,CRC,Costa Rica,1,1,2,4
+112,JOR,Jordan,1,2,1,4
+113,PAN,Panama,1,1,2,4
+114,SYR,Syrian Arab Republic,1,1,2,4
+115,ISL,Iceland,0,2,2,4
+116,KSA,Kingdom of Saudi Arabia,0,2,2,4
+117,LBN,Lebanon,0,2,2,4
+118,GUA,Guatemala,1,1,1,3
+119,KUW,Kuwait,0,0,3,3
+120,SMR,San Marino,0,1,2,3
+121,ZAM,Zambia,0,1,2,3
+122,BDI,Burundi,1,1,0,2
+123,BER,Bermuda,1,0,1,2
+124,LCA,Saint Lucia,1,1,0,2
+125,MOZ,Mozambique,1,0,1,2
+126,SUR,Suriname,1,0,1,2
+127,UAE,United Arab Emirates,1,0,1,2
+128,AFG,Afghanistan,0,0,2,2
+129,ALB,Albania,0,0,2,2
+130,CYP,Cyprus,0,2,0,2
+131,HAI,Haiti,0,1,1,2
+132,MKD,North Macedonia,0,1,1,2
+133,NIG,Niger,0,1,1,2
+134,SRI,Sri Lanka,0,2,0,2
+135,TAN,United Republic of Tanzania,0,2,0,2
+136,UAR,United Arab Republic,0,1,1,2
+137,WIF,West Indies Federation,0,0,2,2
+138,DMA,Dominica,1,0,0,1
+139,AHO,Netherlands Antilles,0,1,0,1
+140,BAR,Barbados,0,0,1,1
+141,BUR,Burkina Faso,0,0,1,1
+142,CPV,Cabo Verde,0,0,1,1
+143,DJI,Djibouti,0,0,1,1
+144,EOR,EOR,0,0,1,1
+145,ERI,Eritrea,0,0,1,1
+146,GAB,Gabon,0,1,0,1
+147,GUY,Guyana,0,0,1,1
+148,IRQ,Iraq,0,0,1,1
+149,ISV,United States Virgin Islands,0,1,0,1
+150,MNE,Montenegro,0,1,0,1
+151,MON,Monaco,0,0,1,1
+152,MRI,Mauritius,0,0,1,1
+153,PAR,Paraguay,0,1,0,1
+154,SAM,Samoa,0,1,0,1
+155,SEN,Senegal,0,1,0,1
+156,SUD,Sudan,0,1,0,1
+157,TGA,Tonga,0,1,0,1
+158,TKM,Turkmenistan,0,1,0,1
+159,TOG,Togo,0,0,1,1
