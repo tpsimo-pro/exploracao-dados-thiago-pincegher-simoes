@@ -1,0 +1,17 @@
+{
+  "nome_dataset": "medals",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Quadro de medalhas por país nos Jogos Olímpicos de Paris 2024.",
+  "campos_principais": [
+    "country_code",
+    "country",
+    "country_long",
+    "Gold Medal",
+    "Silver Medal",
+    "Bronze Medal",
+    "Total"
+  ],
+  "data_coleta": "2024-08-11",
+  "observacoes": "Quadro final de medalhas. Ordenado pelo número de medalhas de ouro. Convertido de CSV para Parquet para melhor performance.",
+  "formato": "Parquet"
+}

@@ -1,0 +1,15 @@
+{
+  "nome_dataset": "technical_officials",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Oficiais técnicos (árbitros, juízes) credenciados para os Jogos Olímpicos de Paris 2024.",
+  "campos_principais": [
+    "name",
+    "short_name",
+    "gender",
+    "disciplines",
+    "country",
+    "country_code"
+  ],
+  "data_coleta": "2024-08-01",
+  "observacoes": "Inclui árbitros e oficiais técnicos de todas as modalidades."
+}

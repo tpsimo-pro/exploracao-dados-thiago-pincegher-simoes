@@ -1,0 +1,20 @@
+{
+  "nome_dataset": "medals_by_country",
+  "fonte": "JOIN entre medals e nocs",
+  "descricao": "Quadro de medalhas enriquecido com nome completo do país (country_long) e informações adicionais do comitê olímpico nacional.",
+  "campos_principais": [
+    "country_code",
+    "country",
+    "country_long",
+    "Gold Medal",
+    "Silver Medal",
+    "Bronze Medal",
+    "Total"
+  ],
+  "data_coleta": "2024-08-11",
+  "observacoes": "JOIN simples entre medals e nocs para adicionar o nome completo do país.",
+  "origem_join": [
+    "medals",
+    "nocs"
+  ]
+}

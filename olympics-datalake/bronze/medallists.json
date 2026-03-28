@@ -1,0 +1,19 @@
+{
+  "nome_dataset": "medallists",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Registro de todos os medalistas dos Jogos Olímpicos de Paris 2024, incluindo tipo de medalha, prova e atleta.",
+  "campos_principais": [
+    "medal_date",
+    "medal_type",
+    "medal_code",
+    "name",
+    "gender",
+    "discipline",
+    "event",
+    "country",
+    "country_code"
+  ],
+  "data_coleta": "2024-08-11",
+  "observacoes": "Dataset principal para análise de desempenho por país e por modalidade. Atualizado até o encerramento dos jogos. Convertido de CSV para Parquet para melhor performance.",
+  "formato": "Parquet"
+}

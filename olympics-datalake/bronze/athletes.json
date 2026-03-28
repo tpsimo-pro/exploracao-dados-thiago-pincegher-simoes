@@ -1,0 +1,20 @@
+{
+  "nome_dataset": "athletes",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Informações sobre os atletas participantes dos Jogos Olímpicos de Paris 2024, incluindo nome, país, disciplina e gênero.",
+  "campos_principais": [
+    "name",
+    "short_name",
+    "gender",
+    "birth_date",
+    "height",
+    "weight",
+    "disciplines",
+    "events",
+    "country",
+    "country_code"
+  ],
+  "data_coleta": "2024-08-01",
+  "observacoes": "Contém todos os atletas credenciados para Paris 2024. Alguns campos podem estar ausentes para atletas de certas modalidades. Convertido de CSV para Parquet para melhor performance.",
+  "formato": "Parquet"
+}

@@ -1,0 +1,16 @@
+{
+  "nome_dataset": "teams",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Equipes participantes dos Jogos Olímpicos de Paris 2024, com seus integrantes e modalidades.",
+  "campos_principais": [
+    "code",
+    "team",
+    "team_gender",
+    "country",
+    "country_code",
+    "discipline",
+    "athletes"
+  ],
+  "data_coleta": "2024-08-01",
+  "observacoes": "Cada linha representa uma equipe em uma modalidade específica."
+}

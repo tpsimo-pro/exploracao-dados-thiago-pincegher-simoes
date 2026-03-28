@@ -1,0 +1,15 @@
+{
+  "nome_dataset": "events",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Lista de todos os eventos (provas) disputados nos Jogos Olímpicos de Paris 2024, com informações de modalidade, gênero e tipo.",
+  "campos_principais": [
+    "event",
+    "tag",
+    "sport",
+    "sport_code",
+    "sport_url"
+  ],
+  "data_coleta": "2024-08-01",
+  "observacoes": "Cada linha representa uma prova distinta. Pode ser usado para join com medallists e schedules. Convertido de CSV para Parquet para melhor performance.",
+  "formato": "Parquet"
+}

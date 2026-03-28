@@ -1,0 +1,14 @@
+{
+  "nome_dataset": "venues",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Locais (arenas, estádios, piscinas) utilizados durante os Jogos Olímpicos de Paris 2024.",
+  "campos_principais": [
+    "code",
+    "venue",
+    "venue_long",
+    "sports",
+    "url"
+  ],
+  "data_coleta": "2024-08-01",
+  "observacoes": "Inclui todos os locais oficiais de competição e cerimônia."
+}

@@ -1,0 +1,15 @@
+{
+  "nome_dataset": "schedules_preliminary",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Programação preliminar dos eventos antes do início dos Jogos Olímpicos de Paris 2024.",
+  "campos_principais": [
+    "date",
+    "sport",
+    "event",
+    "phase",
+    "venue",
+    "status"
+  ],
+  "data_coleta": "2024-07-20",
+  "observacoes": "Programação antes do início oficial. Pode conter diferenças em relação à programação final."
+}

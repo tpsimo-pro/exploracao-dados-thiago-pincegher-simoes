@@ -1,0 +1,22 @@
+{
+  "nome_dataset": "analise_medalhas",
+  "descricao": "Análise completa do quadro de medalhas dos Jogos Olímpicos de Paris 2024, incluindo distribuição por país, gênero e modalidade.",
+  "notebook": "notebook.ipynb",
+  "data_geracao": "2026-03-28",
+  "fontes_bronze": [
+    "medals_by_country",
+    "medallists_enriched"
+  ],
+  "arquivos_gerados": [
+    "medals_summary.csv",
+    "medals_plot.png",
+    "gender_medals_plot.png",
+    "top_sports_medals_plot.png"
+  ],
+  "metricas": {
+    "total_paises_com_medalha": 92,
+    "total_medalhas_ouro": 329,
+    "total_medalhas_geral": 1043
+  },
+  "observacoes": "Análise realizada com dados finais após encerramento dos Jogos Olímpicos de Paris 2024."
+}

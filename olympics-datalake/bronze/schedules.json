@@ -1,0 +1,19 @@
+{
+  "nome_dataset": "schedules",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Programação oficial dos eventos dos Jogos Olímpicos de Paris 2024, incluindo horários, locais e resultados.",
+  "campos_principais": [
+    "date",
+    "start_date",
+    "sport",
+    "event",
+    "phase",
+    "venue",
+    "venue_code",
+    "status",
+    "medal_flag"
+  ],
+  "data_coleta": "2024-08-11",
+  "observacoes": "Inclui todos os eventos realizados. medal_flag indica se houve entrega de medalhas na sessão. Convertido de CSV para Parquet para melhor performance.",
+  "formato": "Parquet"
+}

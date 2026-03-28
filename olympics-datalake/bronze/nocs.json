@@ -1,0 +1,13 @@
+{
+  "nome_dataset": "nocs",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Comitês Olímpicos Nacionais (NOCs) participantes dos Jogos de Paris 2024, com código e nome do país.",
+  "campos_principais": [
+    "code",
+    "country",
+    "country_long"
+  ],
+  "data_coleta": "2024-08-01",
+  "observacoes": "Tabela de referência para joins com outros datasets que utilizam country_code. Convertido de CSV para Parquet para melhor performance.",
+  "formato": "Parquet"
+}

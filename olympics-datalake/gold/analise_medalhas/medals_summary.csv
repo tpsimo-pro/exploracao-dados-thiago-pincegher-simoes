@@ -1,0 +1,93 @@
+country_code,country,country_long_x,ouro,prata,bronze,Total,country_long_y,total,rank
+USA,United States,United States of America,40,44,42,126,United States of America,126,1
+CHN,China,People's Republic of China,40,27,24,91,People's Republic of China,91,2
+JPN,Japan,Japan,20,12,13,45,Japan,45,3
+AUS,Australia,Australia,18,19,16,53,Australia,53,4
+FRA,France,France,16,26,22,64,France,64,5
+NED,Netherlands,Netherlands,15,7,12,34,Netherlands,34,6
+GBR,Great Britain,Great Britain,14,22,29,65,Great Britain,65,7
+KOR,Korea,Republic of Korea,13,9,10,32,Republic of Korea,32,8
+ITA,Italy,Italy,12,13,15,40,Italy,40,9
+GER,Germany,Germany,12,13,8,33,Germany,33,10
+NZL,New Zealand,New Zealand,10,7,3,20,New Zealand,20,11
+CAN,Canada,Canada,9,7,11,27,Canada,27,12
+UZB,Uzbekistan,Uzbekistan,8,2,3,13,Uzbekistan,13,13
+HUN,Hungary,Hungary,6,7,6,19,Hungary,19,14
+ESP,Spain,Spain,5,4,9,18,Spain,18,15
+SWE,Sweden,Sweden,4,4,3,11,Sweden,11,16
+KEN,Kenya,Kenya,4,2,5,11,Kenya,11,17
+NOR,Norway,Norway,4,1,3,8,Norway,8,18
+IRL,Ireland,Ireland,4,0,3,7,Ireland,7,19
+BRA,Brazil,Brazil,3,7,10,20,Brazil,20,20
+IRI,IR Iran,Islamic Republic of Iran,3,6,3,12,Islamic Republic of Iran,12,21
+UKR,Ukraine,Ukraine,3,5,4,12,Ukraine,12,22
+ROU,Romania,Romania,3,4,2,9,Romania,9,23
+GEO,Georgia,Georgia,3,3,1,7,Georgia,7,24
+BEL,Belgium,Belgium,3,1,6,10,Belgium,10,25
+BUL,Bulgaria,Bulgaria,3,1,3,7,Bulgaria,7,26
+SRB,Serbia,Serbia,3,1,1,5,Serbia,5,27
+CZE,Czechia,Czechia,3,0,2,5,Czechia,5,28
+DEN,Denmark,Denmark,2,2,5,9,Denmark,9,29
+AZE,Azerbaijan,Azerbaijan,2,2,3,7,Azerbaijan,7,30
+CRO,Croatia,Croatia,2,2,3,7,Croatia,7,31
+CUB,Cuba,Cuba,2,1,6,9,Cuba,9,32
+BRN,Bahrain,Bahrain,2,1,1,4,Bahrain,4,33
+SLO,Slovenia,Slovenia,2,1,0,3,Slovenia,3,34
+TPE,Chinese Taipei,Chinese Taipei,2,0,5,7,Chinese Taipei,7,35
+AUT,Austria,Austria,2,0,3,5,Austria,5,36
+HKG,"Hong Kong, China","Hong Kong, China",2,0,2,4,"Hong Kong, China",4,37
+PHI,Philippines,Philippines,2,0,2,4,Philippines,4,38
+ALG,Algeria,Algeria,2,0,1,3,Algeria,3,39
+INA,Indonesia,Indonesia,2,0,0,2,Indonesia,2,40
+ISR,Israel,Israel,1,5,1,7,Israel,7,41
+POL,Poland,Poland,1,4,5,10,Poland,10,42
+KAZ,Kazakhstan,Kazakhstan,1,3,3,7,Kazakhstan,7,43
+JAM,Jamaica,Jamaica,1,3,2,6,Jamaica,6,44
+RSA,South Africa,South Africa,1,3,2,6,South Africa,6,45
+THA,Thailand,Thailand,1,3,2,6,Thailand,6,46
+AIN,AIN,AIN,1,3,1,5,AIN,5,47
+ETH,Ethiopia,Ethiopia,1,3,0,4,Ethiopia,4,48
+SUI,Switzerland,Switzerland,1,2,5,8,Switzerland,8,49
+ECU,Ecuador,Ecuador,1,2,2,5,Ecuador,5,50
+POR,Portugal,Portugal,1,2,1,4,Portugal,4,51
+GRE,Greece,Greece,1,1,6,8,Greece,8,52
+ARG,Argentina,Argentina,1,1,1,3,Argentina,3,53
+EGY,Egypt,Egypt,1,1,1,3,Egypt,3,54
+TUN,Tunisia,Tunisia,1,1,1,3,Tunisia,3,55
+BOT,Botswana,Botswana,1,1,0,2,Botswana,2,56
+CHI,Chile,Chile,1,1,0,2,Chile,2,57
+LCA,Saint Lucia,Saint Lucia,1,1,0,2,Saint Lucia,2,58
+UGA,Uganda,Uganda,1,1,0,2,Uganda,2,59
+DOM,Dominican Republic,Dominican Republic,1,0,2,3,Dominican Republic,3,60
+GUA,Guatemala,Guatemala,1,0,1,2,Guatemala,2,61
+MAR,Morocco,Morocco,1,0,1,2,Morocco,2,62
+DMA,Dominica,Dominica,1,0,0,1,Dominica,1,63
+PAK,Pakistan,Pakistan,1,0,0,1,Pakistan,1,64
+TUR,Türkiye,Türkiye,0,3,5,8,Türkiye,8,65
+MEX,Mexico,Mexico,0,3,2,5,Mexico,5,66
+ARM,Armenia,Armenia,0,3,1,4,Armenia,4,67
+COL,Colombia,Colombia,0,3,1,4,Colombia,4,68
+PRK,DPR Korea,Democratic People's Republic of Korea,0,2,4,6,Democratic People's Republic of Korea,6,69
+KGZ,Kyrgyzstan,Kyrgyzstan,0,2,4,6,Kyrgyzstan,6,70
+LTU,Lithuania,Lithuania,0,2,2,4,Lithuania,4,71
+IND,India,India,0,1,5,6,India,6,72
+MDA,Republic of Moldova,Republic of Moldova,0,1,3,4,Republic of Moldova,4,73
+KOS,Kosovo,Kosovo,0,1,1,2,Kosovo,2,74
+CYP,Cyprus,Cyprus,0,1,0,1,Cyprus,1,75
+FIJ,Fiji,Fiji,0,1,0,1,Fiji,1,76
+JOR,Jordan,Jordan,0,1,0,1,Jordan,1,77
+MGL,Mongolia,Mongolia,0,1,0,1,Mongolia,1,78
+PAN,Panama,Panama,0,1,0,1,Panama,1,79
+TJK,Tajikistan,Tajikistan,0,0,3,3,Tajikistan,3,80
+ALB,Albania,Albania,0,0,2,2,Albania,2,81
+GRN,Grenada,Grenada,0,0,2,2,Grenada,2,82
+MAS,Malaysia,Malaysia,0,0,2,2,Malaysia,2,83
+PUR,Puerto Rico,Puerto Rico,0,0,2,2,Puerto Rico,2,84
+CPV,Cabo Verde,Cabo Verde,0,0,1,1,Cabo Verde,1,85
+CIV,Côte d'Ivoire,Côte d'Ivoire,0,0,1,1,Côte d'Ivoire,1,86
+EOR,EOR,Refugee Olympic Team,0,0,1,1,Refugee Olympic Team,1,87
+PER,Peru,Peru,0,0,1,1,Peru,1,88
+QAT,Qatar,Qatar,0,0,1,1,Qatar,1,89
+SGP,Singapore,Singapore,0,0,1,1,Singapore,1,90
+SVK,Slovakia,Slovakia,0,0,1,1,Slovakia,1,91
+ZAM,Zambia,Zambia,0,0,1,1,Zambia,1,92

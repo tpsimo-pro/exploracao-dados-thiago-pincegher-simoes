@@ -1,0 +1,15 @@
+{
+  "nome_dataset": "medals_total",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Totalizador acumulado de medalhas por país ao longo dos Jogos Olímpicos de Paris 2024.",
+  "campos_principais": [
+    "country_code",
+    "country",
+    "Gold Medal",
+    "Silver Medal",
+    "Bronze Medal",
+    "Total"
+  ],
+  "data_coleta": "2024-08-11",
+  "observacoes": "Pode incluir snapshots diários do quadro de medalhas durante os jogos."
+}

@@ -1,0 +1,15 @@
+{
+  "nome_dataset": "torch_route",
+  "fonte": "https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games",
+  "descricao": "Rota da tocha olímpica pelos territórios franceses antes dos Jogos de Paris 2024.",
+  "campos_principais": [
+    "date",
+    "city",
+    "department",
+    "region",
+    "country"
+  ],
+  "data_coleta": "2024-07-26",
+  "observacoes": "Percurso completo da tocha antes da abertura oficial dos jogos. Convertido de CSV para Parquet para melhor performance.",
+  "formato": "Parquet"
+}

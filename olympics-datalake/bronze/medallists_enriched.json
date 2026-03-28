@@ -1,0 +1,25 @@
+{
+  "nome_dataset": "medallists_enriched",
+  "fonte": "JOIN entre medallists, athletes, events e nocs",
+  "descricao": "Dataset enriquecido de medalistas com informações detalhadas do atleta (altura, peso, data de nascimento), nome completo do país e dados do evento.",
+  "campos_principais": [
+    "medal_date",
+    "medal_type",
+    "name",
+    "gender",
+    "discipline",
+    "event",
+    "country",
+    "country_long",
+    "height",
+    "weight",
+    "birth_date"
+  ],
+  "data_coleta": "2024-08-11",
+  "observacoes": "Resultado de JOIN entre medallists + athletes + nocs. Pode conter valores nulos em campos do atleta quando não disponíveis.",
+  "origem_join": [
+    "medallists",
+    "athletes",
+    "nocs"
+  ]
+}

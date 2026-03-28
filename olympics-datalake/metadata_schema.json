@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "project": "Olympics Data Lake — Paris 2024",
+  "description": "Schema técnico que descreve a estrutura e padrões de metadados utilizados neste Data Lake.",
+  "created_at": "2024-08-01",
+  "layers": {
+    "raw": {
+      "description": "Dados brutos originais sem transformação. Cada arquivo CSV possui um arquivo JSON de metadados correspondente.",
+      "formato": "CSV",
+      "metadados_obrigatorios": ["nome_dataset", "fonte", "descricao", "campos_principais", "data_coleta", "observacoes"]
+    },
+    "bronze": {
+      "description": "Dados convertidos para Parquet e datasets resultantes de JOINs entre fontes.",
+      "formato": "Parquet",
+      "metadados_obrigatorios": ["nome_dataset", "fonte", "descricao", "campos_principais", "data_coleta", "observacoes", "origem_join"]
+    },
+    "gold": {
+      "description": "Análises finais, visualizações e relatórios gerados a partir dos dados bronze.",
+      "formato": "CSV, PNG, IPYNB",
+      "metadados_obrigatorios": ["nome_dataset", "descricao", "notebook", "data_geracao", "metricas"]
+    }
+  },
+  "metadata_field_definitions": {
+    "nome_dataset": "Nome identificador do dataset",
+    "fonte": "URL ou referência da origem dos dados",
+    "descricao": "Descrição em linguagem natural do conteúdo do dataset",
+    "campos_principais": "Lista dos campos/colunas mais relevantes",
+    "data_coleta": "Data em que os dados foram coletados (YYYY-MM-DD)",
+    "observacoes": "Notas adicionais sobre qualidade, limitações ou particularidades",
+    "origem_join": "Datasets de origem usados para criar este dataset (apenas camada bronze/gold)"
+  }
+}

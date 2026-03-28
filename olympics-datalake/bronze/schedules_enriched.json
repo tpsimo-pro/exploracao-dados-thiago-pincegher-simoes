@@ -1,0 +1,21 @@
+{
+  "nome_dataset": "schedules_enriched",
+  "fonte": "JOIN entre schedules e venues",
+  "descricao": "Programação dos eventos com informações completas do local de competição.",
+  "campos_principais": [
+    "date",
+    "sport",
+    "event",
+    "phase",
+    "venue",
+    "venue_long",
+    "sports_in_venue",
+    "medal_flag"
+  ],
+  "data_coleta": "2024-08-11",
+  "observacoes": "JOIN entre schedules e venues usando venue_code como chave.",
+  "origem_join": [
+    "schedules",
+    "venues"
+  ]
+}
